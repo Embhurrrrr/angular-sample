@@ -34,6 +34,11 @@ const routes: Routes = [
     loadChildren: () =>
       import('./shared/error/error.module').then((m) => m.ErrorModule),
   },
+  {
+    path: '',
+    loadChildren: () =>
+      import('./modules/cart/cart.module').then((m) => m.CartModule),
+  },
 ];
 
 @NgModule({
