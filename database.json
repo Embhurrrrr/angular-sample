@@ -1,0 +1,16 @@
+{
+  "users": [
+    {
+      "firstName": "Andrei Ember",
+      "middleName": "Aguinaldo",
+      "lastName": "San Miguel",
+      "username": "Embhurrrr",
+      "mobileNum": 9218813644,
+      "birthDate": "Andrei Ember",
+      "email": "andreiembersanmiguel@gmail.com",
+      "interests": ["Filipino", "Italian"],
+      "password": "user123",
+      "confirmPassword": "user123"
+    }
+  ]
+}

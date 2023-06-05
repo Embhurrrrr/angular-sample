@@ -1,0 +1,211 @@
+<div class="container">
+  <mat-card class="signup-container">
+    <mat-card-header>
+      <mat-card-title>Sign Up</mat-card-title>
+    </mat-card-header>
+    <mat-card-content>
+      <form [formGroup]="signUpForm" (ngSubmit)="onSubmit()">
+        <div class="form-groups">
+          <mat-form-field>
+            <mat-label>First Name</mat-label>
+            <input matInput formControlName="firstName" required />
+            <div
+              *ngIf="
+                (buttonClicked && signUpForm.get('firstName')?.invalid) ||
+                signUpForm.get('firstName')?.dirty
+              "
+            >
+              <mat-error
+                *ngIf="signUpForm.get('firstName')?.errors?.['required']"
+                class="input-error"
+                >First Name is required!
+              </mat-error>
+            </div>
+          </mat-form-field>
+          <mat-form-field>
+            <mat-label>Middle Name</mat-label>
+            <input matInput formControlName="middleName" required />
+            <div
+              *ngIf="
+                (buttonClicked && signUpForm.get('middleName')?.invalid) ||
+                signUpForm.get('middleName')?.dirty
+              "
+            >
+              <mat-error
+                *ngIf="signUpForm.get('middleName')?.errors?.['required']"
+                class="input-error"
+                >Middle Name is required!
+              </mat-error>
+            </div>
+          </mat-form-field>
+          <mat-form-field>
+            <mat-label>Last Name</mat-label>
+            <input matInput formControlName="lastName" />
+            <div
+              *ngIf="
+                (buttonClicked && signUpForm.get('lastName')?.invalid) ||
+                signUpForm.get('lastName')?.dirty
+              "
+            >
+              <mat-error
+                *ngIf="signUpForm.get('lastName')?.errors?.['required']"
+                class="input-error"
+                >Last Name is required!
+              </mat-error>
+            </div>
+          </mat-form-field>
+          <mat-form-field>
+            <mat-label>Username</mat-label>
+            <input matInput formControlName="username" />
+            <div
+              *ngIf="
+                (buttonClicked && signUpForm.get('username')?.invalid) ||
+                signUpForm.get('username')?.dirty
+              "
+            >
+              <mat-error
+                *ngIf="signUpForm.get('username')?.errors?.['required']"
+                class="input-error"
+                >Username is required!
+              </mat-error>
+            </div>
+          </mat-form-field>
+          <mat-form-field>
+            <mat-label>Address</mat-label>
+            <input matInput formControlName="address" />
+            <div
+              *ngIf="
+                (buttonClicked && signUpForm.get('address')?.invalid) ||
+                signUpForm.get('address')?.dirty
+              "
+            >
+              <mat-error
+                *ngIf="signUpForm.get('address')?.errors?.['required']"
+                class="input-error"
+                >Address is required!
+              </mat-error>
+            </div>
+          </mat-form-field>
+        </div>
+        <div class="form-groups">
+          <mat-form-field>
+            <mat-label>Mobile Number</mat-label>
+            <input matInput formControlName="mobileNum" type="number" />
+            <div
+              *ngIf="
+                (buttonClicked && signUpForm.get('mobileNum')?.invalid) ||
+                signUpForm.get('mobileNum')?.dirty
+              "
+            >
+              <mat-error
+                *ngIf="signUpForm.get('mobileNum')?.errors?.['required']"
+                class="input-error"
+                >Mobile Number is required!
+              </mat-error>
+            </div>
+          </mat-form-field>
+          <mat-form-field>
+            <mat-label>Email</mat-label>
+            <input matInput type="email" formControlName="email" />
+            <div
+              *ngIf="
+                (buttonClicked && signUpForm.get('email')?.invalid) ||
+                signUpForm.get('email')?.dirty
+              "
+            >
+              <mat-error
+                *ngIf="signUpForm.get('email')?.errors?.['required']"
+                class="input-error"
+                >Email is required!
+              </mat-error>
+            </div>
+          </mat-form-field>
+          <mat-form-field>
+            <mat-label>Birth Date</mat-label>
+            <input
+              matInput
+              [matDatepicker]="picker"
+              formControlName="birthDate"
+            />
+            <div
+              *ngIf="
+                (buttonClicked && signUpForm.get('birthDate')?.invalid) ||
+                signUpForm.get('birthDate')?.dirty
+              "
+            >
+              <mat-error
+                *ngIf="signUpForm.get('mobileNum')?.errors?.['required']"
+                class="input-error"
+                >Birthdate is required!
+              </mat-error>
+            </div>
+            <mat-datepicker-toggle
+              matIconSuffix
+              [for]="picker"
+            ></mat-datepicker-toggle>
+            <mat-datepicker #picker></mat-datepicker>
+          </mat-form-field>
+
+          <mat-form-field>
+            <mat-label>Password</mat-label>
+            <input matInput type="password" formControlName="password" />
+            <div
+              *ngIf="
+                (buttonClicked && signUpForm.get('password')?.invalid) ||
+                signUpForm.get('password')?.dirty
+              "
+            >
+              <mat-error
+                *ngIf="signUpForm.get('password')?.errors?.['required']"
+                class="input-error"
+                >Password is required!
+              </mat-error>
+            </div>
+          </mat-form-field>
+          <mat-form-field>
+            <mat-label>Confirm Password</mat-label>
+            <input matInput type="password" formControlName="confirmPassword" />
+            <div
+              *ngIf="
+                (buttonClicked && signUpForm.get('confirmPassword')?.invalid) ||
+                signUpForm.get('birthDate')?.dirty
+              "
+            >
+              <mat-error
+                *ngIf="signUpForm.get('confirmPassword')?.errors?.['required']"
+                class="input-error"
+                >Confirm Password is required!
+              </mat-error>
+            </div>
+          </mat-form-field>
+        </div>
+        <div class="form-groups">
+          <mat-label class="label-list">List of Interests</mat-label>
+          <mat-selection-list
+            formArrayName="interests"
+            #foodList
+            (selectionChange)="
+              checkboxClicked($event, foodList.selectedOptions.selected)
+            "
+          >
+            <mat-list-option *ngFor="let food of foodInterests" [value]="food">
+              {{ food }}
+            </mat-list-option>
+          </mat-selection-list>
+        </div>
+
+        <div class="button-container">
+          <button
+            mat-raised-button
+            color="primary"
+            class="button-signup"
+            type="submit"
+            (click)="buttonClicked = true"
+          >
+            CREATE ACCOUNT
+          </button>
+        </div>
+      </form>
+    </mat-card-content>
+  </mat-card>
+</div>
